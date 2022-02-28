@@ -1,5 +1,5 @@
 # Étterem projekt / Restaurant app
-Ez a projekt az éttermi felszolgálóknak keszült. <br>
+###Ez a projekt az éttermi felszolgálóknak keszült. <br>
 Fő funkciók:
 - Felhasználók és a menü kezelése
 - Rendelések felvétele, megjegyzések hozzáfűzése
@@ -8,7 +8,7 @@ Fő funkciók:
 
 ---
 
-This project is made for waiters at restaurants. <br>
+###This project is made for waiters at restaurants. <br>
 Main features:
 - Administrating users and menu
 - Create orders, add comments to them
