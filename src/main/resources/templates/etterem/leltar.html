@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Leltár</title>
+    <style>
+        table, th, td {
+            border: 2px solid white;
+        }
+
+        .table-header {
+            background-color: black;
+        }
+
+        @media screen and (max-width: 600px) {
+            table {
+                width: auto;
+                font-size: 2.5vw;
+            }
+
+            .btn-warning {
+                width: auto;
+                font-size: 2.5vw;
+            }
+
+            .btn-danger {
+                width: auto;
+                font-size: 2.5vw;
+            }
+
+            .form-control {
+                width: auto;
+                font-size: 3vw;
+                margin-bottom: 5px;
+            }
+
+            .form-select {
+                width: auto;
+                font-size: 3vw;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous">
+</script>
+<div style="overflow-x:auto;">
+    <table class="table table-white table-striped">
+        <thead class="table-header" style="color: white">
+        <tr>
+            <th scope="col" style="text-align: center">Id</th>
+            <th scope="col" style="text-align: center">Név</th>
+            <th scope="col" style="text-align: center">Ár</th>
+            <th scope="col" style="text-align: center">Tipus</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${allItem}">
+            <th scope="row" th:text="${item.id}" style="text-align: center">0</th>
+            <td th:text="${item.nev}" style="text-align: center">Név</td>
+            <td th:text="${item.ar} + ' Ft'" style="text-align: center">100</td>
+            <td th:text="${item.tipus}" style="text-align: center">Tipus</td>
+            <td>
+                <form style="text-align: center" th:action="@{'/etterem/leltar/{id}'(id=${item.id})}" method="get">
+                    <input type="submit" class="btn btn-warning edit-btn" value="Módosít"/>
+                </form>
+            </td>
+            <td>
+                <form style="text-align: center" th:action="@{'/etterem/leltar/delete/{id}'(id=${item.id})}"
+                      method="post">
+                    <input type="submit" class="btn btn-danger" value="Töröl"/>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3 th:if="${formItem.id == null}">Termék hozzáadása</h3>
+<h3 th:if="${formItem.id != null}">Termék módosítása</h3>
+<form th:action="@{'/etterem/leltar/{id}' (id=${formItem.id})}"
+      method="post" th:object="${formItem}" class="row">
+    <div class="col">
+        <label>
+            <input type="text"
+                   class="form-control"
+                   placeholder="Id"
+                   th:field="*{id}"
+                   disabled="true">
+            <div class="invalid-feedback"
+                 th:if="${#fields.hasErrors('id')}"
+                 th:errors="*{id}">
+                Hibaüzenet
+            </div>
+        </label>
+    </div>
+    <div class="col">
+        <label>
+            <input type="text"
+                   class="form-control"
+                   placeholder="Megnevezés"
+                   th:field="*{nev}"
+                   th:classappend="${#fields.hasErrors('nev')} ? 'is-invalid' : 'is-valid'"/>
+            <div class="invalid-feedback"
+                 th:if="${#fields.hasErrors('nev')}"
+                 th:errors="*{nev}">
+                Hibaüzenet
+            </div>
+        </label>
+    </div>
+    <div class="col">
+        <label>
+            <input type="text"
+                   class="form-control"
+                   placeholder="Ár"
+                   pattern="\d+"
+                   th:field="*{ar}"
+                   th:classappend="${#fields.hasErrors('ar')} ? 'is-invalid' : 'is-valid'"/>
+            <div class="invalid-feedback"
+                 th:if="${#fields.hasErrors('ar')}"
+                 th:errors="*{ar}">
+                Hibaüzenet
+            </div>
+        </label>
+    </div>
+    <div class="col">
+        <label>
+            <select th:field="*{tipus}" class="form-select">
+                <option th:each="tipus : ${allTipus}" th:value="${tipus}" th:text="${tipus}"></option>
+            </select>
+        </label>
+    </div>
+    <div class="col">
+        <input th:if="${formItem.id == null}" class="btn btn-primary" type="submit" value="Hozzáad"/>
+        <input th:if="${formItem.id != null}" class="btn btn-warning" type="submit" value="Módosít"/>
+    </div>
+</form>
+<form th:action="@{/etterem/asztal}" style="padding-top: 2%">
+    <div id="back-button" class="position-relative" style="text-align: center">
+        <button class="btn btn-primary btn-lg" type="submit">VISSZA</button>
+    </div>
+</form>
+</body>
+</html>
