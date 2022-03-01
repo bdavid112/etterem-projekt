@@ -1,4 +1,15 @@
 # Étterem projekt / Restaurant app
+
+### Készítette:
+* Boros Dávid
+* Farmasi Attila
+* Katona Benjámin
+* Reményi Olivér
+* Szögi Bence
+* Vancskó Mihály
+
+---
+
 ### Ez a projekt az éttermi felszolgálóknak keszült. <br>
 Fő funkciók:
 - Felhasználók és a menü kezelése
@@ -14,3 +25,10 @@ Main features:
 - Create orders, add comments to them
 - Send orders to the kitchen
 - Create, split, print and pay bills
+
+---
+
+### Alkalmazás
+* http://164.92.204.195
+* belépéskor a jelszó megegyezik a felhasználónévvel
+* üzenet/komment funkció megjelenése: a termék nevére kattintva a termék rendeléshez adása után
