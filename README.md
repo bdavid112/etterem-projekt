@@ -1,6 +1,6 @@
 # Étterem projekt / Restaurant app
 
-### Készítette:
+### Készítette/Made by:
 * Boros Dávid
 * Farmasi Attila
 * Katona Benjámin
@@ -28,7 +28,7 @@ Main features:
 
 ---
 
-### Alkalmazás
-* http://164.92.204.195
-* belépéskor a jelszó megegyezik a felhasználónévvel
-* üzenet/komment funkció megjelenése: a termék nevére kattintva a termék rendeléshez adása után
+### Alkalmazás/Application
+- http://164.92.204.195
+- Belépéskor a jelszó megegyezik a felhasználónévvel/At the login page every user's password is the same as the username
+- Üzenet/komment funkció megjelenése: a termék nevére kattintva a termék rendeléshez adása után/To add comments to an order: click on the product name in the order table
